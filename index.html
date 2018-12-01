@@ -1,0 +1,41 @@
+<html manifest="MANIFEST">
+    <head>
+        <title>Editor</title>
+
+        <link href="index.css" rel="stylesheet"/>
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    </head>
+
+    <body>
+        <div class="arst-wrapper">
+            <div class="tabs">
+                <a href="#" class="no-link" onClick="toggle('editor')">
+                    <div class="tab__item tab__editor tab__item--active">
+                        E
+                    </div>
+                </a>
+                <a href="#" class="no-link" onClick="toggle('output')">
+                    <div class="tab__item tab__output">
+                        O
+                    </div>
+                </a>
+            </div>
+            <div class="content">
+                <div class="content__item content__editor content__item--active">
+                    <div id="editor"></div>
+                </div>
+                <div class="content__item content__output">
+                    <div class="output"></div>
+                </div>
+            </div>
+        </div>
+
+        <link href="codemirror.css" rel="stylesheet"/>
+        <script src="codemirror.js"></script>
+        <script src="javascript.js"></script>
+        <script src="vim.js"></script>
+        <link href="darcula.css" rel="stylesheet"/>
+        <script src="index.js"></script>
+    </body>
+</html>
