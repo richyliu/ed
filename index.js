@@ -1,6 +1,6 @@
 // setup ace
 let editor = CodeMirror(document.getElementById('editor'), {
-    value: 'function test() {\n  console.log("hello");\n}\n\ntest();',
+    value: load(),
     mode: 'javascript',
     lineNumbers: true,
     theme: 'darcula',
@@ -12,7 +12,7 @@ let editor = CodeMirror(document.getElementById('editor'), {
             toggle('output');
         },
     },
-    keyMap: 'vim',
+    //keyMap: 'vim',
 });
 
 // get element array by class name
