@@ -1,0 +1,18 @@
+.tabs {
+  flex: 0 0 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs__tab {
+  flex: 1 1 auto;
+  border: 3px solid blue;
+  border-radius: 4px;
+  border-right: 3px solid white;
+  margin: 10px;
+  padding: 10px;
+}
+
+.tabs__tab--selected {
+  background-color: aqua;
+}
