@@ -18,8 +18,10 @@
     "@types/node": "^10.12.9",
     "@types/react": "^16.7.6",
     "@types/react-dom": "^16.0.9",
+    "@types/react-toastify": "^4.0.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
     "html-webpack-plugin": "^3.2.0",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "prettier": "^1.15.2",
@@ -39,6 +41,7 @@
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-monaco-editor": "^0.22.0",
+    "react-toastify": "^4.4.3",
     "style-loader": "^0.23.1"
   }
 }

@@ -1,3 +1,9 @@
-.editor {
-  /* background-color: black; */
+#vim-statusbar {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+}
+
+/* span that shows mode ("--NORMAL--", "--INSERT--", etc) */
+#vim-statusbar > span:first-child {
+  margin-right: 10px;
 }

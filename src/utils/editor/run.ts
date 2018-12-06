@@ -1,20 +1,37 @@
+import { toast } from 'react-toastify';
+
+import { switchTab } from '../navigation/tabber';
+import tabs from '../navigation/tabs';
+import * as Logger from '../output/logger';
+
+function setup() {
+  // @ts-ignore
+  window.__consolelog = window.console.log;
+  Logger.clear();
+}
+
+function teardown() {
+  // @ts-ignore
+  window.console.log = window.__consolelog;
+}
+
 /**
  * Run typescript code and display the output
+ * @param code  To be executed
  */
-
-// @ts-ignore
-window.__consolelog = (...params) => {
-  console.log.apply(null, ['OUT: ', ...params]);
-};
-
 export default function(code: string) {
-  const modified = ts.transpile(code).replace('console.log', '__consolelog');
+  setup();
 
-  (() => {
-    try {
-      eval.call(window, modified)
-    } catch (e) {
-      console.error(e);
-    }
-  })();
+  window.console.log = Logger.log;
+
+  try {
+    eval.call(window, ts.transpile(code));
+  } catch (e) {
+    console.error(e);
+    toast.error('Runtime error: ' + e.message);
+  }
+
+  teardown();
+
+  switchTab(tabs[1]);
 }

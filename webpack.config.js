@@ -2,6 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -22,7 +23,7 @@ module.exports = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             }
-        ],
+        ]
     },
     resolve: {
         alias: {
@@ -34,7 +35,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
-        new MonacoWebpackPlugin()
+        new MonacoWebpackPlugin(),
+        new CopyWebpackPlugin([
+            { from: './src/assets', to: 'assets' }
+        ])
     ],
     devServer: {
         historyApiFallback: true

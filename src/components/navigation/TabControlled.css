@@ -1,4 +1,9 @@
 .tab-controlled {
   flex: 1 1 auto;
   height: 100vh;
+  overflow: hidden;
+}
+
+.tab-controlled__item--hidden {
+  display: none;
 }

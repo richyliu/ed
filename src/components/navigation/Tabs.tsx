@@ -2,24 +2,20 @@ import React from 'react';
 
 import './Tabs.css';
 import { Tab } from 'src/models/tab';
+import { switchTab } from 'src/utils/navigation/tabber';
 
 interface TabsProps {
   tabs: Tab[];
-  onChange: (active: number) => void;
-  active: number;
+  active: Tab;
 }
 
-const Tabs: React.FunctionComponent<TabsProps> = ({
-  tabs,
-  onChange,
-  active,
-}) => {
+const Tabs: React.FunctionComponent<TabsProps> = ({ tabs, active }) => {
   return (
     <div className="tabs">
       {tabs.map((tab, index) => (
         <div
-          className={'tabs__tab ' + (active == index && 'tabs__tab--selected')}
-          onClick={() => onChange(index)}
+          className={'tabs__tab ' + (active == tab && 'tabs__tab--selected')}
+          onClick={() => switchTab(tab)}
           key={index}
         >
           {tab.name}

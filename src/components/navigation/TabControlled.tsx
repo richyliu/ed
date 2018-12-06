@@ -1,17 +1,30 @@
 import React from 'react';
 
 import './TabControlled.css';
+import { Tab } from 'src/models/tab';
 
 interface TabControlledProps {
-  component: React.FunctionComponent;
+  tabs: Tab[];
+  active: Tab;
 }
 
 const TabControlled: React.FunctionComponent<TabControlledProps> = ({
-  component: Component,
+  tabs,
+  active,
 }) => {
   return (
     <div className="tab-controlled">
-      <Component />
+      {tabs.map((tab, index) => (
+        <div
+          key={index}
+          className={
+            'tab-controlled__item ' +
+            (tab != active && 'tab-controlled__item--hidden')
+          }
+        >
+          <tab.component />
+        </div>
+      ))}
     </div>
   );
 };

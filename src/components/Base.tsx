@@ -1,31 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer } from 'react-toastify';
 
 import './Base.css';
 import Tabs from 'src/components/navigation/Tabs';
 import TabControlled from 'src/components/navigation/TabControlled';
-import Editor from './editor/Editor';
-import Output from './output/Output';
 import { Tab } from 'src/models/tab';
-
-const tabs: Tab[] = [
-  {
-    name: 'E',
-    component: Editor,
-  },
-  {
-    name: 'O',
-    component: Output,
-  },
-];
+import { addTabListener } from 'src/utils/navigation/tabber';
+import tabs from 'src/utils/navigation/tabs';
 
 const Base: React.FunctionComponent = () => {
   // index of active tab
-  const [active, setActive] = useState<number>(0);
+  const [active, setActive] = useState<Tab>(tabs[0]);
+
+  useEffect(() => addTabListener(setActive), [setActive]);
 
   return (
     <div className="container">
-      <Tabs tabs={tabs} onChange={setActive} active={active} />
-      <TabControlled component={tabs[active].component} />
+      <ToastContainer autoClose={3000} />
+      <Tabs tabs={tabs} active={active} />
+      <TabControlled tabs={tabs} active={active} />
     </div>
   );
 };

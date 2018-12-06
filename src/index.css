@@ -7,3 +7,7 @@ body {
 .app {
   padding: 5px;
 }
+
+input {
+  font-family: inherit;
+}
