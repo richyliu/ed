@@ -1,14 +1,10 @@
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
-import { initVimMode } from 'monaco-vim';
 import { toast } from 'react-toastify';
 
 import { save } from 'src/database/content';
 import run from './run';
 
 export default function(editor: monacoEditor.editor.IStandaloneCodeEditor) {
-  editor.focus();
-  initVimMode(editor, document.getElementById('vim-statusbar'));
-
   [
     {
       id: 'ed-save',
@@ -17,6 +13,7 @@ export default function(editor: monacoEditor.editor.IStandaloneCodeEditor) {
       run: (ed) => {
         editor.getAction('editor.action.formatDocument').run();
         toast.success('Formatted and saved!');
+        save(ed.getValue());
       },
     },
     {

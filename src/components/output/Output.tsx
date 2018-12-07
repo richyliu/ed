@@ -15,7 +15,7 @@ const Output: React.FunctionComponent = () => {
 
   useEffect(() => {
     document.addEventListener('keypress', keyListener);
-    return () => document.removeEventListener('keypress', keyListener);
+    () => document.removeEventListener('keypress', keyListener);
   });
 
   return (
