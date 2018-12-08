@@ -1,8 +1,8 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -35,12 +35,17 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
-        new MonacoWebpackPlugin(),
         new CopyWebpackPlugin([
             { from: './src/assets', to: 'assets' }
-        ])
+        ]),
+        new FilterWarningsPlugin({ 
+            exclude: /Critical dependency: the request of a dependency is an expression/
+        })
     ],
     devServer: {
         historyApiFallback: true
+    },
+    node: {
+        fs: 'empty'
     }
 }

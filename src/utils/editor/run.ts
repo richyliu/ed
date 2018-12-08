@@ -22,6 +22,7 @@ function teardown() {
 export default function(code: string) {
   setup();
 
+  // rebind console logs to output logger
   window.console.log = Logger.log;
 
   try {
