@@ -14,17 +14,7 @@ const TabControlled: React.FunctionComponent<TabControlledProps> = ({
 }) => {
   return (
     <div className="tab-controlled">
-      {tabs.map((tab, index) => (
-        <div
-          key={index}
-          className={
-            'tab-controlled__item ' +
-            (tab != active && 'tab-controlled__item--hidden')
-          }
-        >
-          <tab.component />
-        </div>
-      ))}
+      {tabs.map((tab, index) => tab == active && <tab.component key={index} />)}
     </div>
   );
 };

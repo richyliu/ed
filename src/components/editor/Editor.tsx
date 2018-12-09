@@ -78,6 +78,14 @@ const Editor: React.FunctionComponent = () => {
         runLint(editor.getValue()).then((lints) =>
           lints.failures.forEach((lint) => {
             console.log(lint);
+            editor.getSession().setAnnotations([
+              {
+                row: 1,
+                column: 0,
+                text: 'error message',
+                type: 'warning',
+              },
+            ]);
           })
         );
       }),

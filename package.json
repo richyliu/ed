@@ -5,10 +5,10 @@
   "main": "src/index.tsx",
   "scripts": {
     "start": "webpack-dev-server --mode=development --port=4200 --hot",
-    "build": "NODE_ENV=production webpack --mode=production",
+    "build": "webpack -p",
     "stat": "webpack --json > .stats.json; tail -n +5 .stats.json > stats.json; rm .stats.json",
     "test": "NODE_PATH=. jest",
-    "server": "webpack-dev-server --mode=development --port=3901 --hot --disable-host-check"
+    "server": "webpack-dev-server --mode=development --port=3901 --hot --host 0.0.0.0"
   },
   "keywords": [],
   "author": "",
