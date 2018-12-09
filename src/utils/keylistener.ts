@@ -6,10 +6,9 @@ interface Listener {
 let _callbacks: Listener[] = [];
 
 document.onkeydown = (e) => {
-  alert('typed ' + e.key);
+  console.log(e);
   _callbacks.forEach((lis) => {
     if (e.key == lis.key) {
-      console.log('listener invoked!');
       lis.callback(e);
       if (lis.once) removeListener(lis.callback);
     }
@@ -18,18 +17,22 @@ document.onkeydown = (e) => {
 
 /**
  * Listens to a key down event on the document
- * @param key To listen to
+ * @param key To listen to or multiple keys to listen to
  * @param callback To be executed when key is pressed
  * @param once Whether callback is called once or many times
  * @returns Function to remove listener
  */
 export function addListener(
-  key: string,
+  key: string | string[],
   callback: (e: KeyboardEvent) => void,
   once = false
 ): () => void {
-  console.log('adding listener...');
-  _callbacks.push({ key, callback, once });
+  console.log('adding listener...', _callbacks);
+  if (typeof key == 'string') {
+    _callbacks.push({ key, callback, once });
+  } else {
+    _callbacks = _callbacks.concat(key.map(k => ({ key: k, callback, once})));
+  }
   return () => removeListener(callback);
 }
 

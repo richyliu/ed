@@ -8,35 +8,37 @@ Object.defineProperty(navigator, 'userAgent', {
   },
 });
 
-// rebind hardware keyboard's arrow keys and escape to correct keyCodes
-const keyMaps = [
-  { source: 'UIKeyInputDownArrow', to: 40 },
-  { source: 'UIKeyInputUpArrow', to: 38 },
-  { source: 'UIKeyInputLeftArrow', to: 37 },
-  { source: 'UIKeyInputRightArrow', to: 39 },
-  { source: 'Escape', to: 27 },
-  { source: 'f', to: 37 },
-];
-
+// rebind weird keys after a delay so ace is loaded
 setTimeout(() => {
-  const aceInput: HTMLElement =
-    document.querySelector('.ace_text-input') || (null as any);
+  // rebind hardware keyboard's Alt-[ (“) to escape
+  Key.addListener('“', e => {
+    const escapeEvt = new KeyboardEvent('keydown', {
+      keyCode: 27,
+    } as KeyboardEventInit)
 
-  if (aceInput) {
-    aceInput.onfocus = () => aceInput.blur();
+    const aceInput = document.querySelector('.ace_text-input');
+    const cmdInput = document.querySelector('.ace_dialog-bottom > input');
+    if (aceInput) aceInput.dispatchEvent(escapeEvt);
+    if (cmdInput) cmdInput.dispatchEvent(escapeEvt);
 
-    keyMaps.forEach((km) =>
-      Key.addListener(km.source, (e) => {
-        aceInput.dispatchEvent(
-          new KeyboardEvent('keydown', {
-            keyCode: km.to,
-          } as KeyboardEventInit)
-        );
-        e.preventDefault();
-        e.stopPropagation();
-      })
-    );
-  } else {
-    alert('unable to set up');
-  }
+    e.preventDefault();
+    e.stopPropagation();
+  });
+  // TODO: finish this feature: Alt-w deletes back a word in insert mode
+  /*Key.addListener('∑', e => {
+    const escapeEvt = new KeyboardEvent('keydown', {
+      keyCode: 27,
+    } as KeyboardEventInit)
+
+    const aceInput = document.querySelector('.ace_text-input');
+    const cmdInput = document.querySelector('.ace_dialog-bottom > input');
+    if (aceInput) aceInput.dispatchEvent(escapeEvt);
+    if (cmdInput) cmdInput.dispatchEvent(escapeEvt);
+
+    e.preventDefault();
+    e.stopPropagation();
+  });*/
+
+  // TODO: rebind fancy quotes
+  //Key.addListener("
 }, 1000);

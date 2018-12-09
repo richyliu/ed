@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import AceAjax, { acequire } from 'brace';
 import AceEditor from 'react-ace';
@@ -17,10 +17,24 @@ import run from 'src/utils/editor/run';
 import './Editor.css';
 import { load } from 'src/database/content';
 import runLint from 'src/utils/editor/linter';
+import * as Key from 'src/utils/keylistener';
 
 const Editor: React.FunctionComponent = () => {
   const [value, setValue] = useState<string>(load());
   const editorRef = useRef<AceEditor>(null);
+
+  // turn off autocorrect and auto capitalization on the command prompt when it opens
+  // TODO: use mutationobserver instead of setTimeout
+  useEffect(() => Key.addListener([':', '/'], () => setTimeout(() => {
+    const inputRef = document.querySelector('.ace_dialog-bottom > input');
+    console.log(inputRef);
+    if (inputRef) {
+      inputRef.setAttribute('autocorrect', 'off');
+      inputRef.setAttribute('autocapitalize', 'none');
+      inputRef.setAttribute('autocomplete', 'off');
+    }
+  // wait until after input is created
+  }, 50)));
 
   // wrapps a function with the ace editor from editorRef
   const withEditor: ((
@@ -33,14 +47,6 @@ const Editor: React.FunctionComponent = () => {
       console.warn('Ace Editor is not defined!');
     }
   };
-
-  // focus editor if not focused
-  withEditor((editor) => {
-    // Ace typedefs say isFocused is void for some reason?
-    if (!(editor.isFocused as () => boolean)()) {
-      editor.focus();
-    }
-  })();
 
   const commands = [
     {
@@ -103,8 +109,13 @@ const Editor: React.FunctionComponent = () => {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
       }}
+      editorProps={{
+        $blockScrolling: Infinity
+      }}
       keyboardHandler="vim"
       width="100%"
+      // height of suggestions bar when the keyboard is active
+      height={window.innerHeight-44 + 'px'}
       fontSize={15}
       tabSize={2}
       commands={commands}
