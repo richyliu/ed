@@ -26,7 +26,9 @@
       }
     ],
     "quotemark": [true, "single", "jsx-double"],
-    "curly": [true, "ignore-same-line"]
+    "curly": [true, "ignore-same-line"],
+    "object-curly-spacing": true,
+    "space-in-parens": true
   },
   "linterOptions": {
     "exclude": [
