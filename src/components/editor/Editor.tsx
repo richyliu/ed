@@ -21,6 +21,15 @@ const Editor: React.FunctionComponent = () => {
       setTimeout(() => editor.focus(), 500);
     }
   });
+  // focus on touch click
+  const focus = () => {
+    //if (editor) editor.focus();
+    //console.log('focussing');
+  };
+  useEffect(() => {
+    document.addEventListener('touchstart', focus);
+    return document.addEventListener('touchstart', focus);
+  });
 
   function editorMounted(ed) {
     setEditor(ed);
@@ -30,7 +39,7 @@ const Editor: React.FunctionComponent = () => {
   return (
     <div className="editor">
       <MonacoEditor
-        height={window.outerHeight - 18}
+        height={window.innerHeight - 18}
         language="typescript"
         theme="vs-dark"
         options={{
