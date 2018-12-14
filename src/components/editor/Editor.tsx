@@ -15,22 +15,6 @@ const Editor: React.FunctionComponent = () => {
     monacoEditor.editor.IStandaloneCodeEditor
   >(null as any);
 
-  // always try to focus on the editor
-  useEffect(() => {
-    if (editor) {
-      setTimeout(() => editor.focus(), 500);
-    }
-  });
-  // focus on touch click
-  const focus = () => {
-    //if (editor) editor.focus();
-    //console.log('focussing');
-  };
-  useEffect(() => {
-    document.addEventListener('touchstart', focus);
-    return document.addEventListener('touchstart', focus);
-  });
-
   function editorMounted(ed) {
     setEditor(ed);
     initEditor(ed);

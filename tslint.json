@@ -28,7 +28,9 @@
     "quotemark": [true, "single", "jsx-double"],
     "curly": [true, "ignore-same-line"],
     "object-curly-spacing": true,
-    "space-in-parens": true
+    "space-in-parens": true,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "comment-format": false
   },
   "linterOptions": {
     "exclude": [

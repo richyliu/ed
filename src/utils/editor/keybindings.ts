@@ -1,42 +1,63 @@
-// only works with vim codes
-
-let ctrlMod = false;
-
-document.onkeydown = (e) => {
-  const input = document.querySelector('.inputarea');
-  if (!input) return;
-
-  //  TODO: Fire ctrl + key once ctrl is pressed <12-12-18, Richard> // 
-
-  const key = 'a';
-  const keyCode = 65;
-
-  input.dispatchEvent(
-    new KeyboardEvent('keydown', {
-      key,
-      keyCode,
-    } as KeyboardEventInit)
-  );
+// remaps vim keys with ctrl because some don't work by default
+document.onkeyup = e => {
+  // ctrl-c and ctrl-h are sent as "enter" and "backspace" but with meta key
+  if (
+    e.code == 'Unidentified' &&
+    e.metaKey &&
+    (e.key == 'Enter' || e.key == 'Backspace')
+  ) {
+    console.log('sending');
+    // send just escape for ctrl-c
+    vimKey('Escape');
+    if (e.key == 'Backspace') {
+      // add "x" and "a" to simulate a backspace
+      vimKey('x');
+      vimKey('a');
+    }
+    // do not propagate event
+    return false;
+  }
+  return;
 };
 
-const mappings = [['z', 'a'], ['b', 'f']];
-
-// WORKS!!! only on inputarea itself
-/*setTimeout(() => {
-  const ia = document.querySelector('.inputarea');
-  const letter = 'a';
-  ia.value = ia.value.length > 0 ? ia.value + letter : letter;
-  ia.dispatchEvent(new Event('input', { data: letter }));
-}, 1000);
-
+// map alt-hjkl keys
 document.onkeydown = e => {
-  if (e.key != 'z') return;
+  // if key is alt-hjkl (weird chars get created by alt key)
+  if (e.key.match(/^(˙|∆|˚|¬)$/)) {
+    vimKey('Escape');
+    // h key
+    if (e.key == '˙') {
+      vimKey('i');
+      // j
+    } else if (e.key == '∆') {
+      vimKey('j');
+      vimKey('a');
+      // k
+    } else if (e.key == '˚') {
+      vimKey('k');
+      vimKey('a');
+      // has to be l
+    } else {
+      vimKey('l');
+      vimKey('a');
+    }
+    // prevent event propagation
+    return false;
+  }
+  return;
+};
 
-  console.log('running');
-  const ia = document.querySelector('.inputarea');
-  const letter = 'a';
-  ia.value = ia.value.length > 0 ? ia.value + letter : letter;
-  ia.dispatchEvent(new Event('input', { data: letter }));
-  e.stopPropagation();
-  return false;
-};*/
+/**
+ * Passes a key to Monaco Vim
+ * @param key   Single char key to pass
+ */
+function vimKey(key: string) {
+  const input = document.querySelector('.inputarea');
+  const keyCode = key == 'Escape' ? 27 : 0;
+
+  if (input) {
+    const keyEv = { key, keyCode } as KeyboardEventInit;
+    // dispatch event to vim input
+    input.dispatchEvent(new KeyboardEvent('keydown', keyEv));
+  }
+}
