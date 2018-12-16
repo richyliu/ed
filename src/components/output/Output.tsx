@@ -6,18 +6,6 @@ import { switchTab } from 'src/utils/navigation/tabber';
 import tabs from 'src/utils/navigation/tabs';
 
 const Output: React.FunctionComponent = () => {
-  function keyListener(e) {
-    // switch to editor tab on enter
-    if (e.key == 'Enter') {
-      switchTab(tabs[0]);
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('keypress', keyListener);
-    () => document.removeEventListener('keypress', keyListener);
-  });
-
   return (
     <div className="output">
       {Logger.get().map((item, index) => (

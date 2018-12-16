@@ -20,8 +20,14 @@ document.onkeyup = e => {
   return;
 };
 
-// map alt-hjkl keys
-document.onkeydown = e => {
+// show hover "exploit"
+// document.querySelector('.monaco-editor').dispatchEvent(new MouseEvent('mousemove', { clientX: 196, clientY: 12 }));
+// WORKS WITHOUT ANY HACKS!!! YAY!!!
+// document.querySelector('.mtk1').dispatchEvent(new MouseEvent('mousemove', { clientX: 196, clientY: 12, bubbles: true}));
+// ^^ notice selector is .mtk1, which is a span and bubbles is true
+
+// map alt-hjkl keys and custom vim bindings
+document.addEventListener('onkeydown', ((e: KeyboardEvent) => {
   // if key is alt-hjkl (weird chars get created by alt key)
   if (e.key.match(/^(˙|∆|˚|¬)$/)) {
     vimKey('Escape');
@@ -44,8 +50,9 @@ document.onkeydown = e => {
     // prevent event propagation
     return false;
   }
+
   return;
-};
+}) as EventListener);
 
 /**
  * Passes a key to Monaco Vim
