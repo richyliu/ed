@@ -1,3 +1,6 @@
+/**
+ * Displays output from the logger
+ */
 import React, { useEffect } from 'react';
 
 import './Output.css';

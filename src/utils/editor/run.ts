@@ -1,7 +1,6 @@
 import { toast } from 'react-toastify';
 
 import { switchTab } from '../navigation/tabber';
-import tabs from '../navigation/tabs';
 import * as Logger from '../output/logger';
 
 function setup() {
@@ -33,5 +32,5 @@ export default function(code: string) {
 
   teardown();
 
-  switchTab(tabs[1]);
+  switchTab(1);
 }

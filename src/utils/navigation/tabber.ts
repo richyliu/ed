@@ -2,6 +2,7 @@
  * Manages the changing of tabs and windows
  */
 import { Tab } from 'src/models/tab';
+import tabs from 'src/utils/navigation/tabs';
 
 type TabListener = (tab: Tab) => void;
 
@@ -19,9 +20,13 @@ export function addTabListener(listener: TabListener): () => void {
 }
 
 export function removeTabListener(listener: TabListener) {
-  _listeners.filter((l) => l != listener);
+  _listeners.filter(l => l != listener);
 }
 
-export function switchTab(newTab: Tab) {
-  _listeners.forEach((l) => l(newTab));
+export function switchTab(newTab: Tab | number) {
+  if (typeof newTab == 'number') {
+    switchTab(tabs[newTab]);
+  } else {
+    _listeners.forEach(l => l(newTab));
+  }
 }
