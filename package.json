@@ -1,6 +1,6 @@
 {
   "name": "ed",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mobile editor using Monaco and Typescript",
   "main": "src/index.tsx",
   "scripts": {
