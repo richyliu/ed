@@ -20,7 +20,12 @@ const Editor: React.FunctionComponent = () => {
 
   // input element for monaco editor
   const input = document.querySelector('.inputarea') as HTMLTextAreaElement;
-  useEffect(() => (input ? bindMetaKeys(input, editor) : () => {}));
+  useEffect(() => input && bindMetaKeys(input, editor));
+
+  function initEditor(editor) {
+    setEditor(editor);
+    editor.getModel().updateOptions({ tabSize: 2 });
+  }
 
   return (
     <div className="editor">
@@ -35,7 +40,7 @@ const Editor: React.FunctionComponent = () => {
         }}
         value={code}
         onChange={setCode}
-        editorDidMount={setEditor}
+        editorDidMount={initEditor}
       />
       <VimStatusbar editor={editor} />
     </div>

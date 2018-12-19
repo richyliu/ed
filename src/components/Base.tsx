@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import 'react-toastify/dist/ReactToastify.min.css';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, Slide } from 'react-toastify';
 
 import './Base.css';
 import Tabs from 'src/components/navigation/Tabs';
@@ -18,7 +18,7 @@ const Base: React.FunctionComponent = () => {
 
   return (
     <div className="container">
-      <ToastContainer autoClose={3000} />
+      <ToastContainer autoClose={2000} hideProgressBar transition={Slide} />
       <Tabs tabs={tabs} active={active} />
       <TabControlled tabs={tabs} active={active} />
     </div>

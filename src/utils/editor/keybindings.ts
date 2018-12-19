@@ -1,8 +1,6 @@
 /**
  * Initializes important key bindings for the editor and tab switching
  */
-import { toast } from 'react-toastify';
-
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
 import run from 'src/utils/editor/run';
 import { switchTab } from 'src/utils/navigation/tabber';
@@ -118,7 +116,6 @@ export function bindMetaKeys(
           break;
         case 'ß':
           // alt-s: Save code
-          toast.success('Formatted and saved!', { autoClose: 2000 });
           save(editor.getValue());
           break;
         case '†':
@@ -137,6 +134,10 @@ export function bindMetaKeys(
               })
             );
           }
+          break;
+        case 'π':
+          // alt-p: Format code
+          editor.getAction('editor.action.formatDocument').run();
           break;
         case '¡':
           // alt-1: Switch to tab 1
