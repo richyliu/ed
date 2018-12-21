@@ -1,6 +1,7 @@
 import { Tab } from 'src/models/tab';
 import Editor from 'src/components/editor/Editor';
 import Output from 'src/components/output/Output';
+import Settings from 'src/components/settings/Settings';
 
 const tabs: Tab[] = [
   {
@@ -10,6 +11,10 @@ const tabs: Tab[] = [
   {
     name: 'O',
     component: Output,
+  },
+  {
+    name: 'S',
+    component: Settings,
   },
 ];
 

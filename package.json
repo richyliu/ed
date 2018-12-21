@@ -5,8 +5,7 @@
   "main": "src/index.tsx",
   "scripts": {
     "start": "webpack-dev-server --mode=development --port=4200 --hot",
-    "build": "NODE_ENV=production PUBLIC_URL=. webpack --mode=production && sw-precache --config=sw-precache-config.js",
-    "prod": "NODE_ENV=production PUBLIC_URL=ed webpack --mode=production --config=sw-precache-config.js",
+    "build": "NODE_ENV=production webpack --mode=production && sw-precache --config=sw-precache-config.js",
     "stat": "webpack --json > .stats.json; tail -n +5 .stats.json > stats.json; rm .stats.json",
     "test": "NODE_PATH=. jest",
     "server": "webpack-dev-server --mode=development --port=3901 --hot --host 0.0.0.0"

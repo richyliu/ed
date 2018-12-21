@@ -19,7 +19,7 @@ const TabControlled: React.FunctionComponent<TabControlledProps> = ({
           key={index}
           className={
             'tab-controlled__item ' +
-            (tab != active && 'tab-controlled__item--hidden')
+            (tab !== active && 'tab-controlled__item--hidden')
           }
         >
           <tab.component />

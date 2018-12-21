@@ -1,0 +1,8 @@
+.settings__button {
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  background-color: inherit;
+  color: white;
+}

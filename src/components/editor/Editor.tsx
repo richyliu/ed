@@ -22,10 +22,11 @@ const Editor: React.FunctionComponent = () => {
   const input = document.querySelector('.inputarea') as HTMLTextAreaElement;
   useEffect(() => input && bindMetaKeys(input, editor));
 
-  function initEditor(editor) {
-    setEditor(editor);
-    editor.getModel().updateOptions({ tabSize: 2 });
-  }
+  const initEditor = (newEditor: monacoEditor.editor.IStandaloneCodeEditor) => {
+    setEditor(newEditor);
+    const model = newEditor.getModel();
+    if (model) model.updateOptions({ tabSize: 2 });
+  };
 
   return (
     <div className="editor">

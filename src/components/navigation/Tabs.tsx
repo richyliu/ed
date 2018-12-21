@@ -14,7 +14,7 @@ const Tabs: React.FunctionComponent<TabsProps> = ({ tabs, active }) => {
     <div className="tabs">
       {tabs.map((tab, index) => (
         <div
-          className={'tabs__tab ' + (active == tab && 'tabs__tab--selected')}
+          className={'tabs__tab ' + (active === tab && 'tabs__tab--selected')}
           onClick={() => switchTab(tab)}
           key={index}
         >

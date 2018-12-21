@@ -1,3 +1,6 @@
+/**
+ * See https://github.com/GoogleChromeLabs/sw-precache for configuration info
+ */
 module.exports = {
   staticFileGlobs: [
     'docs/index.html',
@@ -5,10 +8,8 @@ module.exports = {
     'docs/**.js',
     'docs/assets/**',
   ],
-  swFilePath: './docs/service-worker.js',
   templateFilePath: './service-worker.tmpl',
   stripPrefix: 'docs/',
-  handleFetch: true,
   runtimeCaching: [
     {
       urlPattern: /.*localhost.*/,
