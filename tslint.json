@@ -18,9 +18,7 @@
           "objects": "always",
           "arrays": "always",
           "functions": "never",
-          "typeLiterals": "always",
-          "imports": "never",
-          "exports": "never"
+          "typeLiterals": "always"
         },
         "singleline": "never"
       }

@@ -8,6 +8,7 @@ import './Settings.css';
 const Settings: React.FunctionComponent = () => {
   const unregisterServiceWorkers = () => {
     navigator.serviceWorker.getRegistration().then(reg => {
+      console.log(reg);
       if (reg) {
         reg.unregister();
         alert('Successfully unregistered service worker!');
