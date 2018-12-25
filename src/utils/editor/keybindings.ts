@@ -13,14 +13,14 @@ import { save } from 'src/database/content';
 document.addEventListener('keyup', ((e: KeyboardEvent) => {
   // ctrl-c and ctrl-h are sent as "enter" and "backspace" but with meta key
   if (
-    e.code == 'Unidentified' &&
+    e.code === 'Unidentified' &&
     e.metaKey &&
-    (e.key == 'Enter' || e.key == 'Backspace')
+    (e.key === 'Enter' || e.key === 'Backspace')
   ) {
     console.log('sending');
     // send just escape for ctrl-c
     vimKey('Escape');
-    if (e.key == 'Backspace') {
+    if (e.key === 'Backspace') {
       // add "x" and "i" to simulate a backspace
       vimKey('x');
       vimKey('i');
@@ -45,14 +45,14 @@ document.addEventListener('onkeydown', ((e: KeyboardEvent) => {
   if (e.key.match(/^(˙|∆|˚|¬)$/)) {
     vimKey('Escape');
     // h key
-    if (e.key == '˙') {
+    if (e.key === '˙') {
       vimKey('i');
       // j
-    } else if (e.key == '∆') {
+    } else if (e.key === '∆') {
       vimKey('j');
       vimKey('a');
       // k
-    } else if (e.key == '˚') {
+    } else if (e.key === '˚') {
       vimKey('k');
       vimKey('a');
       // has to be l
@@ -73,7 +73,7 @@ document.addEventListener('onkeydown', ((e: KeyboardEvent) => {
  */
 function vimKey(key: string) {
   const input = document.querySelector('.inputarea');
-  const keyCode = key == 'Escape' ? 27 : 0;
+  const keyCode = key === 'Escape' ? 27 : 0;
 
   if (input) {
     const keyEv = { key, keyCode } as KeyboardEventInit;
@@ -135,10 +135,13 @@ export function bindMetaKeys(
             );
           }
           break;
-        case 'π':
-          // alt-p: Format code
+        case 'ƒ':
+          // alt-f: Format code
           editor.getAction('editor.action.formatDocument').run();
           break;
+        case 'π':
+          // alt-p: command palette
+          editor.getAction('editor.action.quickCommand').run();
         case '¡':
           // alt-1: Switch to tab 1
           switchTab(0);
