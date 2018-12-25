@@ -31,52 +31,16 @@ document.addEventListener('keyup', ((e: KeyboardEvent) => {
   return;
 }) as EventListener);
 
-// show hover "exploit"
-// document.querySelector('.monaco-editor').dispatchEvent(new MouseEvent('mousemove', { clientX: 196, clientY: 12 }));
-// WORKS WITHOUT ANY HACKS!!! YAY!!!
-// document.querySelector('.mtk1').dispatchEvent(new MouseEvent('mousemove', { clientX: 196, clientY: 12, bubbles: true}));
-// ^^ notice selector is .mtk1, which is a span and bubbles is true
-
-/*
- * Map alt-hjkl movement keys for monaco vim in insert mode and other keys
- */
-document.addEventListener('onkeydown', ((e: KeyboardEvent) => {
-  // if key is alt-hjkl (weird chars get created by alt key)
-  if (e.key.match(/^(˙|∆|˚|¬)$/)) {
-    vimKey('Escape');
-    // h key
-    if (e.key === '˙') {
-      vimKey('i');
-      // j
-    } else if (e.key === '∆') {
-      vimKey('j');
-      vimKey('a');
-      // k
-    } else if (e.key === '˚') {
-      vimKey('k');
-      vimKey('a');
-      // has to be l
-    } else {
-      vimKey('l');
-      vimKey('a');
-    }
-    // prevent event propagation
-    return false;
-  }
-
-  return;
-}) as EventListener);
-
 /**
  * Passes a key to Monaco Vim
  * @param key   Single char key to pass
  */
-function vimKey(key: string) {
+function vimKey(key: string, customOpt?: any) {
   const input = document.querySelector('.inputarea');
   const keyCode = key === 'Escape' ? 27 : 0;
 
   if (input) {
-    const keyEv = { key, keyCode } as KeyboardEventInit;
+    const keyEv = customOpt || ({ key, keyCode } as KeyboardEventInit);
     // dispatch event to vim input
     input.dispatchEvent(new KeyboardEvent('keydown', keyEv));
   }
@@ -111,8 +75,11 @@ export function bindMetaKeys(
 
       switch (e.key) {
         case '®':
-          // alt-r: Run code
-          run(editor.getValue());
+          // alt-r: Redo (same as ctrl-r)
+          vimKey('r', {
+            ctrlKey: true,
+            keyCode: 82,
+          });
           break;
         case 'ß':
           // alt-s: Save code
@@ -147,8 +114,13 @@ export function bindMetaKeys(
           switchTab(0);
           break;
         case '™':
-          // alt-2: Switch to tab 2
+          // alt-2: Switch to tab 2 and run
+          run(editor.getValue());
           switchTab(1);
+          break;
+        case '£':
+          // alt-3: Switch to tab 3
+          switchTab(2);
           break;
       }
       e.preventDefault();
