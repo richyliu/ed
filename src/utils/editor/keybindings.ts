@@ -2,9 +2,18 @@
  * Initializes important key bindings for the editor and tab switching
  */
 import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
+import prettier from 'prettier/standalone';
+import typescript from 'prettier/parser-typescript';
+
 import run from 'src/utils/editor/run';
 import { switchTab } from 'src/utils/navigation/tabber';
 import { save } from 'src/database/content';
+
+const prettierOptions = {
+  singleQuote: true,
+  trailingComma: 'es5',
+  printWidth: 40,
+};
 
 /*
  * Remap vim keys with ctrl because some don't work by default
@@ -48,23 +57,113 @@ function vimKey(key: string, customOpt?: any) {
 }
 
 /**
- * Passes a key to the Monaco editor
- * @param key  Single char key to pass
- * @param customOpt Options for inputevent
+ * Passes a key to the Monaco editor (inserts the character)
+ * @param key     Single char key to pass
+ * @param editor  Editor instance
  */
-function monacoKey(key: string, customOpt?: any) {
-  const input = document.querySelector('.inputarea') as HTMLInputElement;
+function monacoKey(
+  key: string,
+  editor: monacoEditor.editor.IStandaloneCodeEditor
+) {
+  const selection = editor.getSelection();
+  if (selection) {
+    const range = new monacoEditor.Range(
+      selection.startLineNumber,
+      selection.startColumn,
+      selection.endLineNumber,
+      selection.endColumn
+    );
+    editor.executeEdits('custom-key-insert', [
+      {
+        range,
+        text: key,
+        forceMoveMarkers: true,
+      },
+    ]);
+  }
+}
 
-  if (input) {
-    const keyEv = customOpt || {
-      data: key,
-      inputType: 'insertText',
-      composed: true,
-    };
-    // dispatch event (twice required for some reason)
-    input.dispatchEvent(new Event('input', keyEv));
-    setTimeout(() => input.dispatchEvent(new Event('input', keyEv)), 10);
-    input.value += key;
+/**
+ * Get the position of the nth newline in a string
+ * @param str To search from
+ * @param n   Nth newline
+ */
+function nthNewline(str: string, n: number): number {
+  let index = -1;
+  const substring = '\n';
+
+  while (n-- && index++ < str.length) {
+    index = str.indexOf(substring, index);
+    if (index < 0) break;
+  }
+  return index;
+}
+
+/**
+ * Convert an offset in a str to line number and column based on newlines
+ * @param str    To search from
+ * @param offset To convert to line number and column
+ */
+function getLineColumn(
+  str: string,
+  offset: number
+): { lineNumber: number; column: number } {
+  // find number of newlines + 1 up to offset
+  const lineNumber =
+    (str.substring(0, offset).match(new RegExp('\n', 'g')) || []).length + 1;
+  // find the difference between the offset and position of previous
+  const column = offset - nthNewline('\n' + str, lineNumber) + 1;
+
+  return {
+    lineNumber,
+    column,
+  };
+}
+
+/**
+ * Format the entire code
+ */
+function formatCode(editor: monacoEditor.editor.IStandaloneCodeEditor) {
+  // get position of cursor
+  const pos = editor.getPosition() || new monacoEditor.Position(0, 0);
+  // get current value
+  const val = editor.getValue();
+  // calculate the offset for prettier
+  const cursorOffset = nthNewline('\n' + val, pos.lineNumber) + pos.column - 1;
+
+  // format the code using prettier
+  const out = prettier.formatWithCursor(val, {
+    cursorOffset,
+    parser: 'typescript',
+    plugins: [typescript],
+    ...prettierOptions,
+  });
+
+  const model = editor.getModel();
+  // get line and column from offset
+  const { lineNumber, column } = getLineColumn(out.formatted, out.cursorOffset);
+
+  if (model) {
+    // execute edit so it gets saved in "undo" history
+    editor.executeEdits(
+      // "source" string, not sure what it does
+      '',
+      [
+        {
+          // replace this range (entire document)
+          range: new monacoEditor.Range(
+            0,
+            0,
+            model.getLineCount(),
+            model.getLineLength(model.getLineCount())
+          ),
+          // with the formatted text
+          text: out.formatted,
+        },
+      ],
+      // replace the cursor to the lineNumber and column
+      [new monacoEditor.Selection(lineNumber, column, lineNumber, column)]
+    );
   }
 }
 
@@ -95,6 +194,7 @@ export function bindMetaKeys(
         }
       }
 
+      e.preventDefault();
       switch (e.key) {
         case '®':
           // alt-r: Redo (same as ctrl-r)
@@ -125,8 +225,8 @@ export function bindMetaKeys(
           }
           break;
         case 'ƒ':
-          // alt-f: Format code
-          editor.getAction('editor.action.formatDocument').run();
+          // alt-f: Format code using Prettier
+          formatCode(editor);
           break;
         case 'π':
           // alt-p: command palette
@@ -145,21 +245,14 @@ export function bindMetaKeys(
           switchTab(2);
           break;
       }
-      e.preventDefault();
     } else {
       // normal keys
       switch (e.key) {
         case "'":
-          // fix fancy quotes
-          if (e.keyCode === 222) {
-            monacoKey("'");
-            e.preventDefault();
-          }
-          break;
         case '"':
           // fix fancy quotes
           if (e.keyCode === 222) {
-            monacoKey('"');
+            monacoKey(e.key, editor);
             e.preventDefault();
           }
           break;

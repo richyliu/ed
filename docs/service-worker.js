@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["0.bundle.min.js","51f1d4eb4db784912a0c43c17cb6a7b0"],["1.bundle.min.js","641a43c7d51bf713af76c90a621e4865"],["10.bundle.min.js","e0130c603f4b7a3891dbc0cfc6d30c1e"],["11.bundle.min.js","b24b1dc6d81cba3c0525f6af3aedbd92"],["12.bundle.min.js","33ec7111db4007de82d60da5249c56c6"],["13.bundle.min.js","9f2b58bfe1122f28379fb656d71affc8"],["14.bundle.min.js","5e59d57b4d84a7ff0b5ed85aae8a12d9"],["15.bundle.min.js","8a1d6a486d5c3dac97a0785c15ed3f65"],["16.bundle.min.js","1c1c1fe19ad8e46969aa97823dfa8338"],["17.bundle.min.js","71b1fb39f58dec8070ebb9138c92297e"],["18.bundle.min.js","749ac333c6a7b26990b4a2661257162c"],["19.bundle.min.js","f29d3b2aa5fd8f3c2aff82838dccefe8"],["2.bundle.min.js","3a5a8df5e12680dff5c85beb89c41415"],["20.bundle.min.js","12a4afb9cb9ee84bda15285f34510ab3"],["21.bundle.min.js","e510eecefd29289e5fce8763009632d8"],["22.bundle.min.js","4b4976736e36dc10bb0c7132c54a3610"],["23.bundle.min.js","b09969a2651fef90834d268643e40be5"],["24.bundle.min.js","dd0d0105804416d1204ef06dcad54db9"],["25.bundle.min.js","54258152c009463f4af9957129629d56"],["26.bundle.min.js","738a53505126e1567b905ae643b3f6b6"],["27.bundle.min.js","89af2b95ba8058d3e0f63c2622991bf2"],["28.bundle.min.js","9b81aad42e6f50a03a0bc8775493de31"],["29.bundle.min.js","3571095ea9a17cf4960e7aa2084f1180"],["3.bundle.min.js","e2199e0f7c98edb58b66e7af891472e5"],["30.bundle.min.js","d32f32d7c07a0045c1fca574fa95c0c0"],["31.bundle.min.js","fc274e058dd5050e6528b13105f52445"],["32.bundle.min.js","3cd64434ddea382c34a2f3fd024d61be"],["33.bundle.min.js","e57369893f105e354a6d6a5d07d90c2c"],["34.bundle.min.js","fae8c8d3a1dafc0e47a6bcc525c21966"],["35.bundle.min.js","a2234e656c284c4dad240e2be1766c23"],["36.bundle.min.js","3d9ab06f0e5a415317eb3471c61d3435"],["37.bundle.min.js","ee0838337512618873c29436a4d49885"],["38.bundle.min.js","30849e264a52f9d1fc7d5dbd7fc958c4"],["39.bundle.min.js","0850d73f29538442f2ec18a90922c8bd"],["4.bundle.min.js","6ffbfba91c7ff781dfdcd6b908709187"],["40.bundle.min.js","2f23967b7f5ef3a42101ea2c8fe5114a"],["41.bundle.min.js","94cd32baa191b8cc42f93123ed16b82a"],["42.bundle.min.js","fcb758696123c3b9ca5f80d077a730e4"],["43.bundle.min.js","438e3d182a71aa02b8a0f6af6a3cc987"],["44.bundle.min.js","787298b188f45ff78819c4657d6cd7d9"],["45.bundle.min.js","6a3587c23931578bbb51e98254b9d166"],["46.bundle.min.js","8a4c9840da87b02426d567c38e017ffb"],["47.bundle.min.js","e4b2dc9663413ea0c1e10fdff8372087"],["48.bundle.min.js","d83138fb4c7536ac322228370fd913f2"],["49.bundle.min.js","5d2404ed53e369d7bc9c60318c124707"],["5.bundle.min.js","91aa1f12c4defef818ccb7e953ba420d"],["50.bundle.min.js","6d4df2f6d152af672eb658d880bd09b1"],["51.bundle.min.js","0a08e71ddfbf7f23bfdbce030671ac1f"],["52.bundle.min.js","192ba170ddcf4592631bde813a32b4ad"],["53.bundle.min.js","4c3051e4f0215224836ee200eda2e6be"],["6.bundle.min.js","8702ff34a21fb1dee079c15beaa1f2cd"],["7.bundle.min.js","0728483b8ec894ca1304d713aa057ed3"],["8.bundle.min.js","d0a71b21222e9e9921518f8606673805"],["9.bundle.min.js","cf823d95a33593b683195ed5506e3505"],["assets/favicon/apple-touch-icon.png","0251b29c5b8756ae705997fc742e3151"],["assets/favicon/favicon-16x16.png","71a49072be07c4380897d9865667c56c"],["assets/favicon/favicon-32x32.png","20740bc2650908c2bb80d96d0f79f081"],["assets/favicon/favicon.ico","39dcb79e98d79212b143c9f992a266e3"],["assets/js/typescript.js","d570a61c4483026e353d5ea8203020f8"],["assets/js/typescript.min.js","e1312ad425d36b570534077a1033b255"],["bundle.min.js","27bccac9a1f5bd68f12728e76ceb2a3d"],["css.worker.js","5a733e2dbc8ead64ea770ab0f6596e31"],["editor.worker.js","5f4ba944bd271176a7c8befb483a163f"],["html.worker.js","4ca724603ba4f92c70fd951ede4c3a46"],["index.html","1a923b0e214806e949a6221425184ba5"],["json.worker.js","dc3f74c2fd05892ec487deb12d84193b"],["service-worker.js","0d3016acb0487c83f3b245ab259fadba"],["typescript.worker.js","12d09c55f69f139644a6f49bd4d5bad8"]];
+var precacheConfig = [["0.bundle.min.js","407812f7307b7e2ef59160ef8d89c7d3"],["1.bundle.min.js","641a43c7d51bf713af76c90a621e4865"],["10.bundle.min.js","da3c895ebd7f8cfe63b8d8cfee26ffdf"],["11.bundle.min.js","05d13691b2bb7cb1d77656c4b03792c9"],["12.bundle.min.js","03094b1d46e17491ec0ad7f4014a0009"],["13.bundle.min.js","129d34c5061442dd1f60e54ba986137c"],["14.bundle.min.js","9cacebee9d39120b96b3b6bdc1eb2e2a"],["15.bundle.min.js","d073880c3b124bbc3f4e28e0c53a4b86"],["16.bundle.min.js","6c57d2ee98d61fddfadffb80ca7180db"],["17.bundle.min.js","5902e8c15de667a35891a70df5d5a183"],["18.bundle.min.js","fd5ac4641ef6df6763fd9fcce4e15696"],["19.bundle.min.js","b4b9fed241c5ec8395900dc6095a25af"],["2.bundle.min.js","63682f68510f1c6dce2bc60da4ae8589"],["20.bundle.min.js","413e38401b80c2975326247a9e27d949"],["21.bundle.min.js","a9b2031915c061ce1a34f2c51de1a1c6"],["22.bundle.min.js","130895e0e34299d8a5265be7efbbcdce"],["23.bundle.min.js","a2cade3e9ca2e399934c70c38d2f4fe8"],["24.bundle.min.js","4fbe1e3d05e31b4e4f3d1449fa0db696"],["25.bundle.min.js","58a28dc2047c424c5685fc2e2299e692"],["26.bundle.min.js","aade9327e1a11ce636b1d3926a4104a5"],["27.bundle.min.js","36487e69871e8c68ff369ba5c0648f4f"],["28.bundle.min.js","db17dce5efab907c412f0afd17739bad"],["29.bundle.min.js","ac2231c9d7a187d8d971aa42d973c896"],["3.bundle.min.js","8a63152156a4f0c36849c42381015c54"],["30.bundle.min.js","c9d279482d00895382fd19bd0061ef85"],["31.bundle.min.js","d00f73b8251181d6560c54c957169edd"],["32.bundle.min.js","7871edd3bd271aa02da650a3475a188a"],["33.bundle.min.js","b0c320f3f91dc72ff3060d87bf732909"],["34.bundle.min.js","e7fbf36112497e782d27d52e1de37902"],["35.bundle.min.js","3a73c0b7571225cf20ea6e055a598ab3"],["36.bundle.min.js","8e727190581a67c877a452d8186e7ff0"],["37.bundle.min.js","a5ef70c05c84d0745e7391190a417a77"],["38.bundle.min.js","fb34c01e5cbb379dfaf00dc5e64ab633"],["39.bundle.min.js","a6d94f3a80ce73ee777adf729c4fa433"],["4.bundle.min.js","eba0a65f5f68f7ad7f89948368703a12"],["40.bundle.min.js","ecdd7b915c07ae0e092c3114715e0ba6"],["41.bundle.min.js","b36fa2180c5c0cfe5ef86eedbfd8cd25"],["42.bundle.min.js","0fe971493c6fbd59de1aeec702876722"],["43.bundle.min.js","9c2b90a92aab54b0a7330ceb6ea494a6"],["44.bundle.min.js","9358a13bee269ce855eafe41801d7e21"],["45.bundle.min.js","db55cb71ef92a57cb0750e1097bbc6b2"],["46.bundle.min.js","804a7e0bf57f8c8f9f78085b301ecee4"],["47.bundle.min.js","4ae32a2fa94e4f710301f8758ec86e9c"],["48.bundle.min.js","18137cbdc5eabaad919f36c6f2f3313d"],["49.bundle.min.js","ddec81d1410a0793d619eace7acad6b2"],["5.bundle.min.js","449fff04fcacc64ed0136bb251a07406"],["50.bundle.min.js","d1503f0fd128fe0cd5b4d9ed6c9e3456"],["51.bundle.min.js","1a1700d90b842f8031bfbf297e8bf440"],["52.bundle.min.js","038326a1e2dc03b0c03bcdd2d9078daa"],["53.bundle.min.js","52bd88a911954784da46603b3a5181f4"],["6.bundle.min.js","def7e4d4ba6a74969c743beb7e8fc0b8"],["7.bundle.min.js","c4447b52e0b60b84a0dcf3492116dc56"],["8.bundle.min.js","dbb2af8ff0d858efeeab76541696df6a"],["9.bundle.min.js","bfaed0c0ba40e2917e5b75b915fa221f"],["assets/favicon/apple-touch-icon.png","0251b29c5b8756ae705997fc742e3151"],["assets/favicon/favicon-16x16.png","71a49072be07c4380897d9865667c56c"],["assets/favicon/favicon-32x32.png","20740bc2650908c2bb80d96d0f79f081"],["assets/favicon/favicon.ico","39dcb79e98d79212b143c9f992a266e3"],["assets/js/typescript.js","d570a61c4483026e353d5ea8203020f8"],["assets/js/typescript.min.js","e1312ad425d36b570534077a1033b255"],["bundle.min.js","240eac96492a069b56c717ea582ee79b"],["css.worker.js","5a733e2dbc8ead64ea770ab0f6596e31"],["editor.worker.js","5f4ba944bd271176a7c8befb483a163f"],["html.worker.js","4ca724603ba4f92c70fd951ede4c3a46"],["index.html","1a923b0e214806e949a6221425184ba5"],["json.worker.js","dc3f74c2fd05892ec487deb12d84193b"],["service-worker.js","2c66e97cd17491243407eb360d1893e3"],["typescript.worker.js","12d09c55f69f139644a6f49bd4d5bad8"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -45,7 +45,7 @@ var ignoreUrlParametersMatching = [/^utm_/];
 
 
 
-var addDirectoryIndex = function (originalUrl, index) {
+var addDirectoryIndex = function(originalUrl, index) {
     var url = new URL(originalUrl);
     if (url.pathname.slice(-1) === '/') {
       url.pathname += index;
@@ -53,7 +53,7 @@ var addDirectoryIndex = function (originalUrl, index) {
     return url.toString();
   };
 
-var cleanResponse = function (originalResponse) {
+var cleanResponse = function(originalResponse) {
     // If this is not a redirected response, then we don't have to do anything.
     if (!originalResponse.redirected) {
       return Promise.resolve(originalResponse);
@@ -75,7 +75,7 @@ var cleanResponse = function (originalResponse) {
     });
   };
 
-var createCacheKey = function (originalUrl, paramName, paramValue,
+var createCacheKey = function(originalUrl, paramName, paramValue,
                            dontCacheBustUrlsMatching) {
     // Create a new URL object to avoid modifying originalUrl.
     var url = new URL(originalUrl);
@@ -91,7 +91,7 @@ var createCacheKey = function (originalUrl, paramName, paramValue,
     return url.toString();
   };
 
-var isPathWhitelisted = function (whitelist, absoluteUrlString) {
+var isPathWhitelisted = function(whitelist, absoluteUrlString) {
     // If the whitelist is empty, then consider all URLs to be whitelisted.
     if (whitelist.length === 0) {
       return true;
@@ -104,7 +104,7 @@ var isPathWhitelisted = function (whitelist, absoluteUrlString) {
     });
   };
 
-var stripIgnoredUrlParameters = function (originalUrl,
+var stripIgnoredUrlParameters = function(originalUrl,
     ignoreUrlParametersMatching) {
     var url = new URL(originalUrl);
     // Remove the hash; see https://github.com/GoogleChrome/sw-precache/issues/290
