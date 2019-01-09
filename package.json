@@ -4,7 +4,7 @@
   "description": "Mobile editor using Monaco and Typescript",
   "main": "src/index.tsx",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --port=4200 --hot",
+    "start": "webpack-dev-server --mode=development --port=4200 --hot --host 0.0.0.0",
     "build": "NODE_ENV=production webpack --mode=production && sw-precache --config=sw-precache-config.js && cp service-worker.js docs/",
     "stat": "webpack --json > .stats.json; tail -n +5 .stats.json > stats.json; rm .stats.json",
     "test": "NODE_PATH=. jest",

@@ -17,13 +17,13 @@ document.addEventListener('keyup', ((e: KeyboardEvent) => {
     e.metaKey &&
     (e.key === 'Enter' || e.key === 'Backspace')
   ) {
-    console.log('sending');
     // send just escape for ctrl-c
     vimKey('Escape');
     if (e.key === 'Backspace') {
-      // add "x" and "i" to simulate a backspace
+      // simulate a backspace
       vimKey('x');
-      vimKey('i');
+      vimKey('a');
+      e.preventDefault();
     }
     // do not propagate event
     return false;
@@ -33,7 +33,8 @@ document.addEventListener('keyup', ((e: KeyboardEvent) => {
 
 /**
  * Passes a key to Monaco Vim
- * @param key   Single char key to pass
+ * @param key       Single char key to pass
+ * @param customOpt Options for keyevent
  */
 function vimKey(key: string, customOpt?: any) {
   const input = document.querySelector('.inputarea');
@@ -43,6 +44,27 @@ function vimKey(key: string, customOpt?: any) {
     const keyEv = customOpt || ({ key, keyCode } as KeyboardEventInit);
     // dispatch event to vim input
     input.dispatchEvent(new KeyboardEvent('keydown', keyEv));
+  }
+}
+
+/**
+ * Passes a key to the Monaco editor
+ * @param key  Single char key to pass
+ * @param customOpt Options for inputevent
+ */
+function monacoKey(key: string, customOpt?: any) {
+  const input = document.querySelector('.inputarea') as HTMLInputElement;
+
+  if (input) {
+    const keyEv = customOpt || {
+      data: key,
+      inputType: 'insertText',
+      composed: true,
+    };
+    // dispatch event (twice required for some reason)
+    input.dispatchEvent(new Event('input', keyEv));
+    setTimeout(() => input.dispatchEvent(new Event('input', keyEv)), 10);
+    input.value += key;
   }
 }
 
@@ -124,6 +146,24 @@ export function bindMetaKeys(
           break;
       }
       e.preventDefault();
+    } else {
+      // normal keys
+      switch (e.key) {
+        case "'":
+          // fix fancy quotes
+          if (e.keyCode === 222) {
+            monacoKey("'");
+            e.preventDefault();
+          }
+          break;
+        case '"':
+          // fix fancy quotes
+          if (e.keyCode === 222) {
+            monacoKey('"');
+            e.preventDefault();
+          }
+          break;
+      }
     }
   }) as EventListener;
 

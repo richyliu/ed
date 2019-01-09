@@ -8,7 +8,7 @@ interface LogItemProps {
 }
 
 const LogItem: React.FunctionComponent<LogItemProps> = ({ data }) => {
-  const [collapsed, setCollapsed] = useState<boolean>(true);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
   return (
     <SyntaxHighlighter

@@ -2,10 +2,12 @@
  * Save and load content for the editor
  */
 
-export function save(str: string, loc='default') {
+const defaultLocation = 'default';
+
+export function save(str: string, loc = defaultLocation) {
   localStorage.setItem(loc, str);
 }
 
-export function load(loc='default'): string {
+export function load(loc = defaultLocation): string {
   return localStorage.getItem(loc) || '';
 }
